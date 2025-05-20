@@ -470,6 +470,7 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 										? `${settingsTabTrigger} ${settingsTabTriggerActive}`
 										: settingsTabTrigger,
 									"focus:ring-0", // Remove the focus ring styling
+									"hover:cursor-pointer"
 								)}
 								data-testid={`tab-${id}`}
 								data-compact={isCompactMode}>
