@@ -23,6 +23,7 @@
 	"sections": {
 		"providers": "Провайдеры",
 		"autoApprove": "Автоодобрение",
+		"mcp": "Серверы MCP",
 		"browser": "Доступ к компьютеру",
 		"checkpoints": "Контрольные точки",
 		"notifications": "Уведомления",

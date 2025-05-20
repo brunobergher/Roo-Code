@@ -23,6 +23,7 @@
 	"sections": {
 		"providers": "Dostawcy",
 		"autoApprove": "Auto-zatwierdzanie",
+		"mcp": "Serwery MCP",
 		"browser": "Dostęp komputera",
 		"checkpoints": "Punkty kontrolne",
 		"notifications": "Powiadomienia",

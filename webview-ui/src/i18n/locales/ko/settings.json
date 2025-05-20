@@ -23,6 +23,7 @@
 	"sections": {
 		"providers": "공급자",
 		"autoApprove": "자동 승인",
+		"mcp": "MCP 서버",
 		"browser": "컴퓨터 접근",
 		"checkpoints": "체크포인트",
 		"notifications": "알림",

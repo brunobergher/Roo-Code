@@ -23,6 +23,7 @@
 	"sections": {
 		"providers": "提供商",
 		"autoApprove": "自动批准",
+		"mcp": "MCP 服务器",
 		"browser": "计算机交互",
 		"checkpoints": "存档点",
 		"notifications": "通知",

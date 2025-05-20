@@ -23,6 +23,7 @@
 	"sections": {
 		"providers": "プロバイダー",
 		"autoApprove": "自動承認",
+		"mcp": "MCPサーバー",
 		"browser": "コンピューターアクセス",
 		"checkpoints": "チェックポイント",
 		"notifications": "通知",

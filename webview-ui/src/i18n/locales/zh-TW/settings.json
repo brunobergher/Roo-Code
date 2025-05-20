@@ -23,6 +23,7 @@
 	"sections": {
 		"providers": "供應商",
 		"autoApprove": "自動核准",
+		"mcp": "MCP 伺服器",
 		"browser": "電腦存取",
 		"checkpoints": "檢查點",
 		"notifications": "通知",

@@ -23,6 +23,7 @@
 	"sections": {
 		"providers": "Sağlayıcılar",
 		"autoApprove": "Oto-Onay",
+		"mcp": "MCP Sunucuları",
 		"browser": "Bilgisayar Erişimi",
 		"checkpoints": "Kontrol Noktaları",
 		"notifications": "Bildirimler",

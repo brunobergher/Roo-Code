@@ -23,6 +23,7 @@
 	"sections": {
 		"providers": "Provedores",
 		"autoApprove": "Aprovação",
+		"mcp": "Servidores MCP",
 		"browser": "Navegador",
 		"checkpoints": "Checkpoints",
 		"notifications": "Notificações",

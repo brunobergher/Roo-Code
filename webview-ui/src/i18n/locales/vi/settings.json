@@ -23,6 +23,7 @@
 	"sections": {
 		"providers": "Nhà cung cấp",
 		"autoApprove": "Phê duyệt",
+		"mcp": "Máy chủ MCP",
 		"browser": "Trình duyệt",
 		"checkpoints": "Điểm kiểm tra",
 		"notifications": "Thông báo",

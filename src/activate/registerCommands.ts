@@ -78,17 +78,6 @@ const getCommandsMap = ({ context, outputChannel, provider }: RegisterCommandOpt
 			await visibleProvider.postStateToWebview()
 			await visibleProvider.postMessageToWebview({ type: "action", action: "chatButtonClicked" })
 		},
-		"roo-cline.mcpButtonClicked": () => {
-			const visibleProvider = getVisibleProviderOrLog(outputChannel)
-
-			if (!visibleProvider) {
-				return
-			}
-
-			telemetryService.captureTitleButtonClicked("mcp")
-
-			visibleProvider.postMessageToWebview({ type: "action", action: "mcpButtonClicked" })
-		},
 		"roo-cline.promptsButtonClicked": () => {
 			const visibleProvider = getVisibleProviderOrLog(outputChannel)
 

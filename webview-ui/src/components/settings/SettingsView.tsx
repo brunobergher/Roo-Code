@@ -22,7 +22,9 @@ import {
 	AlertTriangle,
 	Globe,
 	Info,
+	Blocks,
 	LucideIcon,
+	ArrowLeft
 } from "lucide-react"
 
 import { ExperimentId } from "@roo/shared/experiments"
@@ -61,6 +63,7 @@ import { TerminalSettings } from "./TerminalSettings"
 import { ExperimentalSettings } from "./ExperimentalSettings"
 import { LanguageSettings } from "./LanguageSettings"
 import { About } from "./About"
+import { McpSettings } from "./McpSettings"
 import { Section } from "./Section"
 import { cn } from "@/lib/utils"
 
@@ -78,6 +81,7 @@ export interface SettingsViewRef {
 const sectionNames = [
 	"providers",
 	"autoApprove",
+	"mcp",
 	"browser",
 	"checkpoints",
 	"notifications",
@@ -137,6 +141,7 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 		maxOpenTabsContext,
 		maxWorkspaceFiles,
 		mcpEnabled,
+		enableMcpServerCreation,
 		requestDelaySeconds,
 		remoteBrowserHost,
 		screenshotQuality,
@@ -270,6 +275,7 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 			vscode.postMessage({ type: "terminalZdotdir", bool: terminalZdotdir })
 			vscode.postMessage({ type: "terminalCompressProgressBar", bool: terminalCompressProgressBar })
 			vscode.postMessage({ type: "mcpEnabled", bool: mcpEnabled })
+			vscode.postMessage({ type: "enableMcpServerCreation", bool: enableMcpServerCreation })
 			vscode.postMessage({ type: "alwaysApproveResubmit", bool: alwaysApproveResubmit })
 			vscode.postMessage({ type: "requestDelaySeconds", value: requestDelaySeconds })
 			vscode.postMessage({ type: "maxOpenTabsContext", value: maxOpenTabsContext })
@@ -353,6 +359,7 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 		() => [
 			{ id: "providers", icon: Webhook },
 			{ id: "autoApprove", icon: CheckCheck },
+			{ id: "mcp", icon: Blocks },
 			{ id: "browser", icon: SquareMousePointer },
 			{ id: "checkpoints", icon: GitBranch },
 			{ id: "notifications", icon: Bell },
@@ -409,6 +416,14 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 		<Tab>
 			<TabHeader className="flex justify-between items-center gap-2">
 				<div className="flex items-center gap-1">
+					
+					<Button
+						variant="ghost"
+						size="sm"
+						title={t("settings:header.doneButtonTooltip")}
+						onClick={() => checkUnsaveChanges(onDone)}>
+						<ArrowLeft className="w-4"/>
+					</Button>
 					<h3 className="text-vscode-foreground m-0">{t("settings:header.title")}</h3>
 				</div>
 				<div className="flex gap-2">
@@ -426,12 +441,6 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 						disabled={!isChangeDetected || !isSettingValid}
 						data-testid="save-button">
 						{t("settings:common.save")}
-					</Button>
-					<Button
-						variant="secondary"
-						title={t("settings:header.doneButtonTooltip")}
-						onClick={() => checkUnsaveChanges(onDone)}>
-						{t("settings:common.done")}
 					</Button>
 				</div>
 			</TabHeader>
@@ -561,6 +570,16 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 							alwaysAllowSubtasks={alwaysAllowSubtasks}
 							alwaysAllowExecute={alwaysAllowExecute}
 							allowedCommands={allowedCommands}
+							setCachedStateField={setCachedStateField}
+						/>
+					)}
+
+					{/* MCP Section */}
+					{activeTab === "mcp" && (
+						<McpSettings
+							mcpEnabled={mcpEnabled}
+							enableMcpServerCreation={enableMcpServerCreation}
+							alwaysAllowMcp={alwaysAllowMcp}
 							setCachedStateField={setCachedStateField}
 						/>
 					)}

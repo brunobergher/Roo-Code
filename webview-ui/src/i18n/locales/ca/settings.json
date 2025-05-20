@@ -23,6 +23,7 @@
 	"sections": {
 		"providers": "Proveïdors",
 		"autoApprove": "Auto-aprovació",
+		"mcp": "Servidors MCP",
 		"browser": "Accés a l'ordinador",
 		"checkpoints": "Punts de control",
 		"notifications": "Notificacions",

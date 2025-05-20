@@ -23,6 +23,7 @@
 	"sections": {
 		"providers": "प्रदाता",
 		"autoApprove": "अनुमोदन",
+		"mcp": "MCP सर्वर",
 		"browser": "ब्राउज़र",
 		"checkpoints": "चेकपॉइंट",
 		"notifications": "सूचनाएँ",
