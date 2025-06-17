@@ -51,7 +51,7 @@ const WelcomeView = () => {
 		<Tab>
 			<TabContent className="flex flex-col gap-5 p-16">
 				<RooHero />
-				<h2 className="mt-0 mb-0">{t("chat:greeting")}</h2>
+				<h2 className="mt-0 mb-0">{t("welcome:greeting")}</h2>
 
 				<div className="font-bold">
 					<p>
