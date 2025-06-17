@@ -1000,6 +1000,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 							<SelectDropdown
 								value={mode}
 								title={t("chat:selectMode")}
+								disableSearch={true}
 								options={[
 									{
 										value: "shortcut",
@@ -1037,6 +1038,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 								value={currentConfigId}
 								disabled={selectApiConfigDisabled}
 								title={t("chat:selectApiConfig")}
+								disableSearch={false}
 								placeholder={displayName}
 								options={[
 									// Pinned items first.
