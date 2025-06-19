@@ -7,6 +7,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui"
 import { IconButton } from "./IconButton"
 import { vscode } from "@/utils/vscode"
 import { useExtensionState } from "@/context/ExtensionStateContext"
+import { useAppTranslation } from "@/i18n/TranslationContext"
 
 interface ModeSelectorProps {
 	value: Mode
@@ -30,6 +31,7 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
 	const [open, setOpen] = React.useState(false)
 	const portalContainer = useRooPortal("roo-portal")
 	const { experiments, hasOpenedModeSelector, setHasOpenedModeSelector } = useExtensionState()
+	const { t } = useAppTranslation()
 
 	const trackModeSelectorOpened = () => {
 		if (!hasOpenedModeSelector) {
@@ -80,7 +82,7 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
 				<div className="flex flex-col w-full">
 					<div className="p-3 border-b border-vscode-dropdown-border cursor-default">
 						<div className="flex flex-row items-center gap-1 p-0 mt-0 mb-1 w-full">
-							<h4 className="m-0 pb-2 flex-1">Modes</h4>
+							<h4 className="m-0 pb-2 flex-1">{t("chat:modeSelector.title")}</h4>
 							<div className="flex flex-row gap-1 ml-auto mb-1">
 								{experiments?.marketplace && (
 									<IconButton
