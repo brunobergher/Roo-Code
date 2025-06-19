@@ -94,7 +94,7 @@ const WelcomeView = () => {
 								<a
 									key={index}
 									href={provider.authUrl}
-									className="flex-1 border border-vscode-panel-border hover:bg-vscode-button-hoverBackground rounded-lg py-4 px-6 mb-2 flex flex-row gap-4 cursor-pointer transition-all no-underline text-inherit"
+									className="flex-1 border border-vscode-panel-border hover:bg-secondary rounded-lg py-4 px-6 mb-2 flex flex-row gap-4 cursor-pointer transition-all no-underline text-inherit"
 									target="_blank"
 									rel="noopener noreferrer">
 									<div className="w-10 h-10">
