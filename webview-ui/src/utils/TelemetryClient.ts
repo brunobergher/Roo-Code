@@ -42,6 +42,28 @@ class TelemetryClient {
 			}
 		}
 	}
+
+	public setPeopleProperty(propertyName: string, value: any) {
+		if (TelemetryClient.telemetryEnabled) {
+			try {
+				posthog.people.set({ [propertyName]: value })
+			} catch (_error) {
+				// Silently fail if there's an error setting a property.
+			}
+		}
+	}
+
+	public getPeopleProperty(propertyName: string): any {
+		if (TelemetryClient.telemetryEnabled) {
+			try {
+				return posthog.get_property(propertyName)
+			} catch (_error) {
+				// Silently fail if there's an error getting a property.
+				return null
+			}
+		}
+		return null
+	}
 }
 
 export const telemetryClient = TelemetryClient.getInstance()

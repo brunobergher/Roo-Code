@@ -1,5 +1,5 @@
 import React from "react"
-import { ChevronsUpDown, Check } from "lucide-react"
+import { ChevronUp, Check } from "lucide-react"
 import { Mode, getAllModes } from "@roo/modes"
 import { cn } from "@/lib/utils"
 import { useRooPortal } from "@/components/ui/hooks/useRooPortal"
@@ -7,6 +7,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui"
 import { IconButton } from "./IconButton"
 import { vscode } from "@/utils/vscode"
 import { useExtensionState } from "@/context/ExtensionStateContext"
+import { useModeSelectorTracking } from "./hooks/useModeSelectorTracking"
 
 interface ModeSelectorProps {
 	value: Mode
@@ -30,6 +31,7 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
 	const [open, setOpen] = React.useState(false)
 	const portalContainer = useRooPortal("roo-portal")
 	const { experiments } = useExtensionState()
+	const { hasOpenedModeSelector, trackModeSelectorOpened } = useModeSelectorTracking()
 
 	// Get all available modes
 	const modes = React.useMemo(() => getAllModes(customModes), [customModes])
@@ -38,7 +40,15 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
 	const selectedMode = React.useMemo(() => modes.find((mode) => mode.slug === value), [modes, value])
 
 	return (
-		<Popover open={open} onOpenChange={setOpen} data-testid="mode-selector-root">
+		<Popover
+			open={open}
+			onOpenChange={(isOpen) => {
+				if (isOpen) {
+					trackModeSelectorOpened()
+				}
+				setOpen(isOpen)
+			}}
+			data-testid="mode-selector-root">
 			<PopoverTrigger
 				disabled={disabled}
 				title={title}
@@ -51,8 +61,11 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
 						? "opacity-50 cursor-not-allowed"
 						: "opacity-90 hover:opacity-100 hover:bg-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.15)] cursor-pointer",
 					triggerClassName,
+					!disabled && !hasOpenedModeSelector
+						? "bg-primary opacity-90 hover:bg-primary-hover text-vscode-button-foreground"
+						: null,
 				)}>
-				<ChevronsUpDown className="pointer-events-none opacity-80 flex-shrink-0 size-3" />
+				<ChevronUp className="pointer-events-none opacity-80 flex-shrink-0 size-3" />
 				<span className="truncate">{selectedMode?.name || ""}</span>
 			</PopoverTrigger>
 
