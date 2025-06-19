@@ -7,7 +7,6 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui"
 import { IconButton } from "./IconButton"
 import { vscode } from "@/utils/vscode"
 import { useExtensionState } from "@/context/ExtensionStateContext"
-import { useModeSelectorTracking } from "./hooks/useModeSelectorTracking"
 
 interface ModeSelectorProps {
 	value: Mode
@@ -30,8 +29,14 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
 }) => {
 	const [open, setOpen] = React.useState(false)
 	const portalContainer = useRooPortal("roo-portal")
-	const { experiments } = useExtensionState()
-	const { hasOpenedModeSelector, trackModeSelectorOpened } = useModeSelectorTracking()
+	const { experiments, hasOpenedModeSelector, setHasOpenedModeSelector } = useExtensionState()
+
+	const trackModeSelectorOpened = () => {
+		if (!hasOpenedModeSelector) {
+			setHasOpenedModeSelector(true)
+			vscode.postMessage({ type: "hasOpenedModeSelector", bool: true })
+		}
+	}
 
 	// Get all available modes
 	const modes = React.useMemo(() => getAllModes(customModes), [customModes])
@@ -43,9 +48,7 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
 		<Popover
 			open={open}
 			onOpenChange={(isOpen) => {
-				if (isOpen) {
-					trackModeSelectorOpened()
-				}
+				if (isOpen) trackModeSelectorOpened()
 				setOpen(isOpen)
 			}}
 			data-testid="mode-selector-root">
@@ -79,7 +82,7 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
 						<div className="flex flex-row items-center gap-1 p-0 mt-0 mb-1 w-full">
 							<h4 className="m-0 pb-2 flex-1">Modes</h4>
 							<div className="flex flex-row gap-1 ml-auto mb-1">
-								{experiments.marketplace && (
+								{experiments?.marketplace && (
 									<IconButton
 										iconClass="codicon-extensions"
 										title="Mode Marketplace"
