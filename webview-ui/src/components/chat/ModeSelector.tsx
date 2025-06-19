@@ -67,7 +67,18 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
 							<h4 className="m-0 pb-2 flex-1">Modes</h4>
 							<div className="flex flex-row gap-1 ml-auto mb-1">
 								{experiments.marketplace && (
-									<IconButton iconClass="codicon-extensions" title="Mode Marketplace" />
+									<IconButton
+										iconClass="codicon-extensions"
+										title="Mode Marketplace"
+										onClick={() => {
+											vscode.postMessage({
+												type: "switchTab",
+												tab: "marketplace",
+											})
+
+											setOpen(false)
+										}}
+									/>
 								)}
 								<IconButton
 									iconClass="codicon-settings-gear"
