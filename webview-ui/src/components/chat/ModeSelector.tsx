@@ -30,7 +30,7 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
 }) => {
 	const [open, setOpen] = React.useState(false)
 	const portalContainer = useRooPortal("roo-portal")
-	const { experiments, hasOpenedModeSelector, setHasOpenedModeSelector } = useExtensionState()
+	const { hasOpenedModeSelector, setHasOpenedModeSelector } = useExtensionState()
 	const { t } = useAppTranslation()
 
 	const trackModeSelectorOpened = () => {
@@ -84,20 +84,18 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
 						<div className="flex flex-row items-center gap-1 p-0 mt-0 mb-1 w-full">
 							<h4 className="m-0 pb-2 flex-1">{t("chat:modeSelector.title")}</h4>
 							<div className="flex flex-row gap-1 ml-auto mb-1">
-								{experiments?.marketplace && (
-									<IconButton
-										iconClass="codicon-extensions"
-										title="Mode Marketplace"
-										onClick={() => {
-											vscode.postMessage({
-												type: "switchTab",
-												tab: "marketplace",
-											})
+								<IconButton
+									iconClass="codicon-extensions"
+									title="Mode Marketplace"
+									onClick={() => {
+										vscode.postMessage({
+											type: "switchTab",
+											tab: "marketplace",
+										})
 
-											setOpen(false)
-										}}
-									/>
-								)}
+										setOpen(false)
+									}}
+								/>
 								<IconButton
 									iconClass="codicon-settings-gear"
 									title="Mode Settings"
