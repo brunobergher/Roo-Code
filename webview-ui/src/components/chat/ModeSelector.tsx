@@ -119,9 +119,11 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
 								data-testid="mode-selector-item">
 								<div>
 									<p className="m-0 mb-0 font-bold">{mode.name}</p>
-									<p className="m-0 py-0 pl-4 overflow-hidden h-4 flex-1 text-xs">
-										{mode.roleDefinition}
-									</p>
+									{mode.description && (
+										<p className="m-0 py-0 pl-4 overflow-hidden h-4 flex-1 text-xs">
+											{mode.roleDefinition}
+										</p>
+									)}
 								</div>
 								{mode.slug === value && <Check className="ml-auto size-4 p-0.5 flex-1" />}
 							</div>
