@@ -6,6 +6,7 @@ import { useRooPortal } from "@/components/ui/hooks/useRooPortal"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui"
 import { IconButton } from "./IconButton"
 import { vscode } from "@/utils/vscode"
+import { useExtensionState } from "@/context/ExtensionStateContext"
 
 interface ModeSelectorProps {
 	value: Mode
@@ -28,6 +29,7 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
 }) => {
 	const [open, setOpen] = React.useState(false)
 	const portalContainer = useRooPortal("roo-portal")
+	const { experiments } = useExtensionState()
 
 	// Get all available modes
 	const modes = React.useMemo(() => getAllModes(customModes), [customModes])
@@ -64,7 +66,9 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
 						<div className="flex flex-row items-center gap-1 p-0 mt-0 mb-1 w-full">
 							<h4 className="m-0 pb-2 flex-1">Modes</h4>
 							<div className="flex flex-row gap-1 ml-auto mb-1">
-								<IconButton iconClass="codicon-extensions" title="Mode Marketplace" />
+								{experiments.marketplace && (
+									<IconButton iconClass="codicon-extensions" title="Mode Marketplace" />
+								)}
 								<IconButton
 									iconClass="codicon-settings-gear"
 									title="Mode Settings"
