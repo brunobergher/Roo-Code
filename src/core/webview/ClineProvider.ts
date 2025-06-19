@@ -1451,6 +1451,7 @@ export class ClineProvider
 				codebaseIndexEmbedderModelId: "",
 			},
 			mdmCompliant: this.checkMdmCompliance(),
+			hasOpenedModeSelector: this.getGlobalState("hasOpenedModeSelector") ?? false,
 		}
 	}
 

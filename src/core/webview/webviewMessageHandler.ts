@@ -856,7 +856,11 @@ export const webviewMessageHandler = async (
 				const updatedPrompts = { ...existingPrompts, [message.promptMode]: message.customPrompt }
 				await updateGlobalState("customModePrompts", updatedPrompts)
 				const currentState = await provider.getStateToPostToWebview()
-				const stateWithPrompts = { ...currentState, customModePrompts: updatedPrompts }
+				const stateWithPrompts = {
+					...currentState,
+					customModePrompts: updatedPrompts,
+					hasOpenedModeSelector: currentState.hasOpenedModeSelector ?? false,
+				}
 				provider.postMessageToWebview({ type: "state", state: stateWithPrompts })
 			}
 			break
