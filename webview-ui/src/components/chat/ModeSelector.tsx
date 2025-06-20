@@ -88,10 +88,14 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
 									iconClass="codicon-extensions"
 									title={t("chat:modeSelector.marketplace")}
 									onClick={() => {
-										vscode.postMessage({
-											type: "switchTab",
-											tab: "marketplace",
-										})
+										window.postMessage(
+											{
+												type: "action",
+												action: "marketplaceButtonClicked",
+												values: { marketplaceTab: "mode" },
+											},
+											"*",
+										)
 
 										setOpen(false)
 									}}
