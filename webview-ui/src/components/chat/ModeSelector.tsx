@@ -86,7 +86,7 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
 							<div className="flex flex-row gap-1 ml-auto mb-1">
 								<IconButton
 									iconClass="codicon-extensions"
-									title="Mode Marketplace"
+									title={t("chat:modeSelector.marketplace")}
 									onClick={() => {
 										vscode.postMessage({
 											type: "switchTab",
@@ -98,7 +98,7 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
 								/>
 								<IconButton
 									iconClass="codicon-settings-gear"
-									title="Mode Settings"
+									title={t("chat:modeSelector.settings")}
 									onClick={() => {
 										vscode.postMessage({
 											type: "switchTab",
@@ -110,7 +110,7 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
 							</div>
 						</div>
 						<p className="my-0 text-sm">
-							Specialized personas that tailor Roo&apos;s behavior.
+							{t("chat:modeSelector.description")}
 							<br />
 							{modeShortcutText}
 						</p>
